@@ -2,12 +2,12 @@ import unicodedata
 
 
 def enterNewWords(words):
-    word = normalize(input("What word would you like to enter (must be in Italian): "))
+    word = normalize(input("What word would you like to enter (must be in Italian): \n"))
     if checkItalian(word) == False:
         print("This is not a valid word")
         return
     else:
-        meaning = input("What does this word mean???")
+        meaning = input("What does this word mean???\n")
         words[word] = meaning
         return
 
