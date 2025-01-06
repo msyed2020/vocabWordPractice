@@ -1,6 +1,28 @@
+import unicodedata
+
 
 def enterNewWords(words):
-    print("Enter words here")
+    word = normalize(input("What word would you like to enter (must be in Italian): "))
+    if checkItalian(word) == False:
+        print("This is not a valid word")
+        return
+    else:
+        meaning = input("What does this word mean???")
+        words[word] = meaning
+        return
+
+def normalize(word):
+    return unicodedata.normalize("NFC", word)
+
+def checkItalian(word):
+    with open("italianwords.txt", "r", encoding="utf-8") as f:
+        wordList = set(w.strip().lower() for w in f)
+    
+    word = word.lower()
+    if word in wordList:
+        return True
+    else:
+        return False
 
 def main():
     words = {}

@@ -1,1 +1,2 @@
 Basic vocab word practice program. This is designed for the Italian language, so it only supports characters for that.
+Note that the words are simply the 1000 most common words of the language; therefore, it is entirely possible for there to be a proper word that the program will not recognize
