@@ -1,0 +1,1 @@
+Basic vocab word practice program. This is designed for the Italian language, so it only supports characters for that.
