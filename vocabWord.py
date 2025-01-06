@@ -1,6 +1,6 @@
 
 def enterNewWords(words):
-    pass
+    print("Enter words here")
 
 def main():
     words = {}
