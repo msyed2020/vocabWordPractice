@@ -1,5 +1,5 @@
 import unicodedata
-
+import json
 
 def enterNewWords(words):
     word = normalize(input("What word would you like to enter (must be in Italian): \n"))
@@ -9,6 +9,8 @@ def enterNewWords(words):
     else:
         meaning = input("What does this word mean???\n")
         words[word] = meaning
+        with open("words.json", "w", encoding="utf-8") as f:
+            json.dump(words, f, ensure_ascii=False, indent=4)
         return
 
 def normalize(word):
