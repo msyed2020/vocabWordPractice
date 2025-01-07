@@ -1,5 +1,6 @@
 import unicodedata
 import json
+import random
 
 def enterNewWords():
 
@@ -42,28 +43,43 @@ def listWords():
         print(f"{word}: {meaning}")
     
 
+
 def getWords():
     try:
         with open("words.json", "r", encoding="utf-8") as f:
             words = json.load(f)
         return words
     except FileNotFoundError:
-        #print("No word file found")
         return {}
     except json.JSONDecodeError:
-        #print("Word list empty or corrupted")
         return {}
+
+def wordToDefPrac():
+    words = getWords()
+    if words == {}:
+        print("Empty or corrupted words")
+    wordLookup = words.keys()
+    num = random.randint(0, len(wordLookup) - 1)
+    chosenWord = wordLookup[num]
+    guess = input("What is the definition of " + chosenWord + "???:\n")
+    if guess != words[chosenWord]:
+        print("Incorrect!")
+    else:
+        print("Correct!")
 
 def main():
     
     print("What would you like to do???:\n")
     print("1. Enter a new word")
     print("2. List words")
-    resp = input("Choose either 1 or 2: ")
+    print("3. Practice word to defintions")
+    resp = input("Choose either 1, 2, or 3: ")
     if int(resp) == 1:
         enterNewWords()
     elif int(resp) == 2:
         listWords()
+    elif int(resp) == 3:
+        wordToDefPrac()
     else:
         print("Choose a proper number")
         return
