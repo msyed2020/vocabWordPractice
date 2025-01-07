@@ -26,16 +26,28 @@ def checkItalian(word):
     else:
         return False
 
+def listWords():
+    try:
+        with open("words.json", "r", encoding="utf-8") as f:
+            words = json.load(f)
+        for word, meaning in words.items():
+            print(f"{word}: {meaning}")
+    except FileNotFoundError:
+        print("No word file found")
+    except json.JSONDecodeError:
+        print("Word list empty or corrupted")
+
+
 def main():
     words = {}
     print("What would you like to do???:\n")
     print("1. Enter a new word")
-    print("2. Practice words")
+    print("2. List words")
     resp = input("Choose either 1 or 2: ")
     if int(resp) == 1:
         enterNewWords(words)
     elif int(resp) == 2:
-        print("list words lol")
+        listWords()
     else:
         print("Choose a proper number")
         return
