@@ -58,12 +58,13 @@ def wordToDefPrac():
     words = getWords()
     if words == {}:
         print("Empty or corrupted words")
-    wordLookup = words.keys()
+    wordLookup = list(words.keys())
     num = random.randint(0, len(wordLookup) - 1)
     chosenWord = wordLookup[num]
     guess = input("What is the definition of " + chosenWord + "???:\n")
     if guess != words[chosenWord]:
         print("Incorrect!")
+        print(chosenWord + " actually means " + words[chosenWord])
     else:
         print("Correct!")
 
