@@ -68,19 +68,36 @@ def wordToDefPrac():
     else:
         print("Correct!")
 
+def defToWordPrac():
+    words = getWords()
+    if words == {}:
+        print("Empty or corrupted words")
+    wordLookup = list(words.keys())
+    num = random.randint(0, len(wordLookup) - 1)
+    chosenWord = wordLookup[num]
+    guess = input("What word is defined by '" + words[chosenWord] + "'???:\n")
+    if guess != chosenWord:
+        print("Incorrect!")
+        print(chosenWord + " is the correct word.")
+    else:
+        print("Correct!")
+
 def main():
     
     print("What would you like to do???:\n")
     print("1. Enter a new word")
     print("2. List words")
-    print("3. Practice word to defintions")
-    resp = input("Choose either 1, 2, or 3: ")
+    print("3. Practice word to definitions")
+    print("4. Practice definitions to word")
+    resp = input("Choose either 1, 2, 3 or 4: ")
     if int(resp) == 1:
         enterNewWords()
     elif int(resp) == 2:
         listWords()
     elif int(resp) == 3:
         wordToDefPrac()
+    elif int(resp) == 4:
+        defToWordPrac()
     else:
         print("Choose a proper number")
         return
