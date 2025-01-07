@@ -1,7 +1,15 @@
 import unicodedata
 import json
 
-def enterNewWords(words):
+def enterNewWords():
+
+    try:
+        with open("words.json", "r", encoding="utf-8") as f:
+            words = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        words = {}
+
+    
     word = normalize(input("What word would you like to enter (must be in Italian): \n"))
     if checkItalian(word) == False:
         print("This is not a valid word")
@@ -27,25 +35,33 @@ def checkItalian(word):
         return False
 
 def listWords():
+    words = getWords()
+    if words == {}:
+        print("Empty or corrupted words")
+    for word, meaning in words.items():
+        print(f"{word}: {meaning}")
+    
+
+def getWords():
     try:
         with open("words.json", "r", encoding="utf-8") as f:
             words = json.load(f)
-        for word, meaning in words.items():
-            print(f"{word}: {meaning}")
+        return words
     except FileNotFoundError:
-        print("No word file found")
+        #print("No word file found")
+        return {}
     except json.JSONDecodeError:
-        print("Word list empty or corrupted")
-
+        #print("Word list empty or corrupted")
+        return {}
 
 def main():
-    words = {}
+    
     print("What would you like to do???:\n")
     print("1. Enter a new word")
     print("2. List words")
     resp = input("Choose either 1 or 2: ")
     if int(resp) == 1:
-        enterNewWords(words)
+        enterNewWords()
     elif int(resp) == 2:
         listWords()
     else:
